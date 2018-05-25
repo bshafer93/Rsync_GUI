@@ -1,5 +1,8 @@
 README 
 
+To install double click install.command
+
+OR
 
 1. Install Python 3.6 https://www.python.org/downloads/
 
@@ -18,9 +21,6 @@ README
 # depending on permissions can be installed with homebrew using following commands
 #e means execute in ruby
 #brew doctor should output "Your system is ready to brew" if correctly installed
-
-OR 
-
 
 #!/bin/bash
 
