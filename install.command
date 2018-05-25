@@ -7,4 +7,4 @@ brew doctor
 brew install python3
 pip3 install paramiko
 pip3 install paramiko-expect
-pip3 installpyqt5
+pip3 install pyqt5
