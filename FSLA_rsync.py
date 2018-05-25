@@ -51,6 +51,7 @@ class AppWindow(QMainWindow,Ui_MainWindow):
 
         dest = username + "@" + destLocation + ":" + destPath
         command = ("rsync -rpvgotP" + " " + source + " " + dest)
+        self.warningPopup(command)
         return command
 
     def testPath(self, path):
@@ -61,6 +62,12 @@ class AppWindow(QMainWindow,Ui_MainWindow):
                 self.warningPopup("Invalid Characters found!")
 
     def warningPopup(self,msg):
+        msgBox = QMessageBox()
+        msgBox.setIcon(QMessageBox.Warning)
+        msgBox.setInformativeText(msg)
+        msgBox.exec()
+
+    def commPopup(self,msg):
         msgBox = QMessageBox()
         msgBox.setIcon(QMessageBox.Information)
         msgBox.setInformativeText(msg)
