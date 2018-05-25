@@ -19,8 +19,10 @@ README
 #e means execute in ruby
 #brew doctor should output "Your system is ready to brew" if correctly installed
 
+OR 
 
-/bin/bash
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew doctor
-brew install python3
+
+#!/bin/bash
+
+# example of using arguments to a
+sudo /Library/Frameworks/Python.framework/Versions/3.6/bin/pip3 install -r requirements.txt
