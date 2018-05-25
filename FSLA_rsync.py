@@ -57,13 +57,13 @@ class AppWindow(QMainWindow,Ui_MainWindow):
         path = str(path)
         for i in range (0, len(path)):
             value = int(ord(path[i]))
-            if value != 45 and value != 95 and (value < 47 or (value > 57 and value < 65) or (value > 90 and value < 97) or value >127):
-                self.warningPopup()
+            if value != 95 and (value < 45 or (value > 57 and value < 65) or (value > 90 and value < 97) or value >127):
+                self.warningPopup("Invalid Characters found!")
 
-    def warningPopup(self):
+    def warningPopup(self,msg):
         msgBox = QMessageBox()
         msgBox.setIcon(QMessageBox.Information)
-        msgBox.setInformativeText("There may be an issue with the paths or file names.")
+        msgBox.setInformativeText(msg)
         msgBox.exec()
 
     def ssh_and_rsync(self):
@@ -75,18 +75,21 @@ class AppWindow(QMainWindow,Ui_MainWindow):
         client.load_system_host_keys()
         client.set_missing_host_key_policy(paramiko.client.AutoAddPolicy())
         print (str(sourceComp))
-        client.connect( str(sourceComp), username=str(user), password=str(userPass))
 
-        with SSHClientInteraction(client) as interact:
-            interact.expect(PROMPT)
+        try:
+            client.connect( str(sourceComp), username=str(user), password=str(userPass))
 
-            interact.send(command)
-            interact.expect(PROMPT)
-            cmd_output_uname = interact.current_output_clean
-            print(cmd_output_uname)
+            with SSHClientInteraction(client) as interact:
+                interact.expect(PROMPT)
 
-            client.close()
+                interact.send(command)
+                interact.expect(PROMPT)
+                cmd_output_uname = interact.current_output_clean
+                print(cmd_output_uname)
 
+                client.close()
+        except:
+            self.warningPopup("Something went wrong when connecting. Make sure you entered your credentials correctly.")
 
 
 def main():
