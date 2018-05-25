@@ -1,2 +1,2 @@
-cd Desktop/FSLA_Rsync_V002
+cd Desktop/Rsync_GUI
 python3 FSLA_rsync.py
